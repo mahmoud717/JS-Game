@@ -24,7 +24,7 @@ class BootScene extends Phaser.Scene {
 
   create() {
     this.load.image('logo', skyImage);
-    const description = 'Welcome to the marathon... Press ENTER to start the game.';
+    const description = 'Welcome to the marathon. .. Press ENTER to start the game.';
     this.title = this.add.text(16, 16, description, { fontSize: '32px', fill: '#fff' });
     this.tweens.add({
       targets: this.title,
