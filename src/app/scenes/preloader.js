@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 import GameText from '../utils/gameText';
-import skyImage from '../../assets/imgs/sky.png';
 import starImage from '../../assets/imgs/star.png';
 import groundImage from '../../assets/imgs/platform.png';
 import dudeImage from '../../assets/imgs/dude.png';
@@ -23,7 +22,8 @@ export default class PreloaderScene extends Phaser.Scene {
     this.progressBox = this.add.graphics();
     this.progressBox.fillStyle(0x222222, 0.8);
     this.progressBox.fillRect(240, 270, 320, 50);
-
+    this.progressBar.setScale(1.5);
+    this.progressBox.setScale(1.5);
     this.width = this.cameras.main.width;
     this.height = this.cameras.main.height;
 

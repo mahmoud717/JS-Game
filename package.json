@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "clean-webpack-plugin": "^2.0.0",
+    "node-fetch": "^2.6.1",
     "phaser": "^3.50.1"
   },
   "repository": {
