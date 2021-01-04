@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import gameScene from '../scenes/game';
 import BootScene from '../scenes/boot';
+import PreloaderScene from '../scenes/preloader';
 // import gameOverScene from '../scenes/gameOver';
 // import leaderboardScene from '../scenes/leaderboard';
 
@@ -12,7 +13,7 @@ export default {
     width: 1200,
     height: 900,
   },
-  scene: [BootScene, gameScene],
+  scene: [BootScene, gameScene, PreloaderScene],
   resolution: 1,
   zoom: 1,
   physics: {
