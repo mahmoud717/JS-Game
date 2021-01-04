@@ -31,5 +31,9 @@ export const postScore = async (user, score) => {
 
 export const handleScores = async () => {
   const scores = await getScores();
-  console.log(scores);
+  const array = [];
+  for (let i = 0; i < scores.result.length; i += 1) {
+    array.push([scores.result[i].score, scores.result[i].user]);
+  }
+  return Array.from(array).sort((a, b) => b[0] - a[0]);
 };

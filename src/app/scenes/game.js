@@ -37,14 +37,18 @@ export default class SceneMain extends Phaser.Scene {
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
   }
 
-  hitBomb(player, bomb) {
+  hitBomb(player, bomb, score) {
     this.physics.pause();
 
     player.setTint(0xff0000);
 
     player.anims.play('turn');
 
+    localStorage.setItem('score', JSON.stringify(this.score));
+
     this.gameOver = true;
+    this.score = 0;
+    this.scene.start('GameOverScene');
   }
 
   create() {

@@ -2,8 +2,8 @@ import Phaser from 'phaser';
 import gameScene from '../scenes/game';
 import BootScene from '../scenes/boot';
 import PreloaderScene from '../scenes/preloader';
-// import gameOverScene from '../scenes/gameOver';
-// import leaderboardScene from '../scenes/leaderboard';
+import GameOverScene from '../scenes/gameOver';
+import leaderboardScene from '../scenes/leaderboard';
 
 export default {
   type: Phaser.AUTO,
@@ -13,7 +13,7 @@ export default {
     width: 1200,
     height: 900,
   },
-  scene: [BootScene, gameScene, PreloaderScene],
+  scene: [BootScene, gameScene, PreloaderScene, GameOverScene, leaderboardScene],
   resolution: 1,
   zoom: 1,
   physics: {
