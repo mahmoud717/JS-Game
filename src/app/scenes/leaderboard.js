@@ -26,7 +26,7 @@ class LeaderBoardScene extends Phaser.Scene {
     this.createButton(this.btnRestart, 'sprBtnRestart', 'sprBtnRestart', 'sprBtnRestart');
     this.btnRestart.on('pointerup', () => {
       this.btnRestart.setTexture('sprBtnRestart');
-      this.scene.start('SceneMain');
+      this.scene.start('GameScene');
     }, this);
 
     this.getScores = handleScores();
