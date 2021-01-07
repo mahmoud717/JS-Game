@@ -4,7 +4,7 @@ Here, I have created platform game using HTML5, Java-Script, Phaser3.
 
 ## Live-Demo
 
-[marathon-runner](https://kind-kepler-f81b3d.netlify.app)
+[Platform game](https://kind-kepler-f81b3d.netlify.app)
 
 ## How to play
 
