@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import Phaser from 'phaser';
 import gameScene from '../scenes/game';
 import BootScene from '../scenes/boot';
