@@ -37,7 +37,7 @@ export default class SceneMain extends Phaser.Scene {
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
   }
 
-  hitBomb(player, bomb, score) {
+  hitBomb(player) {
     this.physics.pause();
 
     player.setTint(0xff0000);

@@ -10,9 +10,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.3.1",
+    "clean-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
@@ -22,8 +23,10 @@
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.5.1",
     "mini-css-extract-plugin": "^0.5.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "phaser": "^3.50.1",
     "popper.js": "^1.14.7",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -31,15 +34,11 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.17.2",
+    "terser-webpack-plugin": "^4.2.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.1"
-  },
-  "dependencies": {
-    "clean-webpack-plugin": "^2.0.0",
-    "node-fetch": "^2.6.1",
-    "phaser": "^3.50.1"
   },
   "repository": {
     "type": "git",
