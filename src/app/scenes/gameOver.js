@@ -36,7 +36,7 @@ class SceneGameOver extends Phaser.Scene {
     this.createButton(this.btnRecord, 'sprBtnRecord', 'sprBtnRecord', 'sprBtnRecord');
     this.btnRecord.on('pointerup', () => {
       this.btnRecord.setTexture('sprBtnRecord');
-      this.scene.start('SceneLeaderBoard');
+      this.scene.start('LeaderBoardScene');
     }, this);
 
 
@@ -45,12 +45,11 @@ class SceneGameOver extends Phaser.Scene {
     this.userName = '';
 
     const div = document.createElement('div');
-    const innerHTML = `
+    div.innerHTML = `
         <input type="text" id="nameField" placeholder="Enter your name" style="font-size: 1.5rem width: ${this.game.config.width * 0.25}"><br>
         <input type="button" name="submitButton" value="Submit Score" style="font-size: 1.5rem">
         `;
 
-    div.innerHTML = innerHTML;
 
     const element = this.add.dom(280, 480, div);
     element.setVisible(true);
@@ -65,7 +64,7 @@ class SceneGameOver extends Phaser.Scene {
           this.userName = inputText.value;
           this.submit = postScore(this.userName, this.scores);
           this.submit.then(() => {
-            this.scene.start('SceneLeaderBoard');
+            this.scene.start('LeaderBoardScene');
           });
         }
       }
