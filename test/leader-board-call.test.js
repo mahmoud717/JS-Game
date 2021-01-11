@@ -8,7 +8,6 @@ describe('Test to add a game, add a score to it and request it back', () => {
     result1.then(answer1 => {
       expect(answer1).toMatch(/(Game with ID).*(added)/);
 
-
       test('Add a record for the previous id', () => {
         const user = 'UserName';
         const score = 5000;

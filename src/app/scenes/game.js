@@ -5,6 +5,7 @@ export default class SceneMain extends Phaser.Scene {
     super('GameScene');
     this.score = 0;
     this.scoreText = '';
+    this.starsTotal = [];
   }
 
   collectStar(player, star) {
@@ -13,19 +14,28 @@ export default class SceneMain extends Phaser.Scene {
     this.scoreText.setText(`Score: ${this.score}`);
   }
 
-  addStars(arg) {
-    this.stars = arg.physics.add.group({
+  addStars(name, arg, x, y, repeat) {
+    const title = name;
+    this[title] = arg.physics.add.group({
       key: 'starImage',
-      repeat: 11,
-      setXY: { x: 12, y: 0, stepX: 105 },
+      repeat,
+      setXY: { x, y, stepX: 105 },
     });
 
-    this.stars.children.iterate((child) => {
+    this[title].children.iterate((child) => {
       child.setBounceY(Phaser.Math.FloatBetween(0.2, 0.4));
       child.setCollideWorldBounds(true);
     });
-    arg.physics.add.collider(this.stars, this.platforms);
-    arg.physics.add.overlap(this.player, this.stars, this.collectStar, null, arg);
+    arg.physics.add.collider(this[title], this.platforms);
+    arg.physics.add.overlap(this.player, this[title], this.collectStar, null, arg);
+  }
+
+  addStarsGroup(arg) {
+    this.addStars('stars1', arg, 0, 100, 3);
+    this.addStars('stars2', arg, 320, 300, 3);
+    this.addStars('stars3', arg, 930, 500, 2);
+    this.addStars('stars2', arg, 420, 500, 3);
+    this.starsTotal.push(this.stars1, this.stars2, this.stars3);
   }
 
   createBomb() {
@@ -35,6 +45,25 @@ export default class SceneMain extends Phaser.Scene {
     bomb.setBounce(1);
     bomb.setCollideWorldBounds(true);
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+  }
+
+  checkbomb() {
+    this.bombs.children.iterate((child) => {
+      if (child.y > (this.game.config.height - 100)) {
+        child.destroy();
+        this.createBomb();
+      }
+    });
+  }
+
+  checkStars() {
+    let check = true;
+    for (let i = 0; i < this.starsTotal.length; i += 1) {
+      if (this.starsTotal[i].countActive(true) !== 0) {
+        check = false;
+      }
+    }
+    return check;
   }
 
   hitBomb(player) {
@@ -55,12 +84,14 @@ export default class SceneMain extends Phaser.Scene {
     this.sky = this.add.image(600, 450, 'skyImage');
     this.sky.setScale(1.5);
     this.platforms = this.physics.add.staticGroup();
-    this.platforms.create(600, 850, 'groundImage').setScale(3).refreshBody();
 
-    this.platforms.create(600, 700, 'groundImage');
+    this.platforms.create(600, 700, 'groundImage').refreshBody();
     this.platforms.create(200, 550, 'groundImage');
+    this.platforms.create(500, 400, 'groundImage');
+    this.platforms.create(120, 240, 'groundImage');
     this.platforms.create(1100, 600, 'groundImage');
-
+    this.platforms.create(1100, 600, 'groundImage');
+    this.platforms.create(1100, 600, 'groundImage');
     this.player = this.physics.add.sprite(100, 450, 'dudeImage');
 
     this.player.setBounce(0.2);
@@ -90,12 +121,8 @@ export default class SceneMain extends Phaser.Scene {
 
     this.physics.add.collider(this.player, this.platforms);
     this.cursors = this.input.keyboard.createCursorKeys();
-
-    this.addStars(this);
-
-
     this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-
+    this.addStarsGroup(this);
     this.bombs = this.physics.add.group();
 
     this.physics.add.collider(this.bombs, this.platforms);
@@ -118,13 +145,24 @@ export default class SceneMain extends Phaser.Scene {
       this.player.anims.play('turn');
     }
 
+    if (this.player.y > (this.game.config.height - 100)) {
+      this.hitBomb(this.player);
+    }
+
     if (this.cursors.up.isDown && this.player.body.touching.down) {
       this.player.setVelocityY(-480);
     }
 
-    if (this.stars.countActive(true) === 0) {
-      this.addStars(this);
-      this.createBomb();
+    if (this.bombs.countActive(true) > 0) {
+      this.checkbomb();
+    }
+
+    if (this.score > 0) {
+      if (this.checkStars()) {
+        this.starsTotal = [];
+        this.addStarsGroup(this);
+        this.createBomb();
+      }
     }
   }
 }

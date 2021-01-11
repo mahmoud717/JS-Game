@@ -5,7 +5,6 @@ import groundImage from '../../assets/imgs/platform.png';
 import dudeImage from '../../assets/imgs/dude.png';
 import bombImage from '../../assets/imgs/bomb.png';
 
-
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super('Preloader');
@@ -55,12 +54,11 @@ export default class PreloaderScene extends Phaser.Scene {
       this.time.delayedCall(750, this.ready, [], this);
     });
 
-
     this.load.image('starImage', starImage);
     this.load.image('groundImage', groundImage);
     this.load.spritesheet('dudeImage', dudeImage, {
-      frameWidth: 32,
-      frameHeight: 48,
+      frameWidth: 40,
+      frameHeight: 66,
     });
     this.load.image('bombImage', bombImage);
   }

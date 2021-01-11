@@ -92,7 +92,7 @@ class LeaderBoardScene extends Phaser.Scene {
     this.getItems = (count, score) => {
       const data = ['Rank', 'User', 'Score'];
 
-      for (let i = 0; i < count; i += 1) {
+      for (let i = 0; i <= 5; i += 1) {
         if (score[i]) {
           data.push(i + 1);
           data.push(score[i][1]);
